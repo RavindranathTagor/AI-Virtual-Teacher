@@ -14,6 +14,7 @@
     "@react-three/fiber": "^8.15.16",
     "dotenv": "^16.4.5",
     "leva": "^0.9.35",
+    "marked": "^13.0.2",
     "microsoft-cognitiveservices-speech-sdk": "^1.38.0",
     "next": "^14.2.4",
     "openai": "^4.52.3",

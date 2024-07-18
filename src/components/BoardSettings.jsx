@@ -1,11 +1,11 @@
 import { teachers, useAITeacher } from "@/hooks/useAITeacher";
 
 export const BoardSettings = () => {
-  const furigana = useAITeacher((state) => state.furigana);
-  const setFurigana = useAITeacher((state) => state.setFurigana);
+  // const furigana = useAITeacher((state) => state.furigana);
+  // const setFurigana = useAITeacher((state) => state.setFurigana);
 
-  const english = useAITeacher((state) => state.english);
-  const setEnglish = useAITeacher((state) => state.setEnglish);
+  // const english = useAITeacher((state) => state.english);
+  // const setEnglish = useAITeacher((state) => state.setEnglish);
 
   const teacher = useAITeacher((state) => state.teacher);
   const setTeacher = useAITeacher((state) => state.setTeacher);
@@ -62,26 +62,26 @@ export const BoardSettings = () => {
       <div className="absolute left-0 top-full flex flex-row gap-2 mt-20">
         <button
           className={` ${
-            speech === "formal"
+            speech === "General"
               ? "text-white bg-slate-900/40 "
               : "text-white/45 bg-slate-700/20 "
           } py-4 px-10 text-4xl rounded-full transition-colors duration-500 backdrop-blur-md`}
-          onClick={() => setSpeech("formal")}
+          onClick={() => setSpeech("General")}
         >
-          Formal
+         General
         </button>
         <button
           className={` ${
-            speech === "casual"
+            speech === "coding"
               ? "text-white bg-slate-900/40 "
               : "text-white/45 bg-slate-700/20 "
           } py-4 px-10 text-4xl rounded-full transition-colors duration-500 backdrop-blur-md`}
-          onClick={() => setSpeech("casual")}
+          onClick={() => setSpeech("coding")}
         >
-          Casual
+          Coding Question
         </button>
       </div>
-      <div className="absolute right-0 top-full flex flex-row gap-2 mt-20">
+      {/* <div className="absolute right-0 top-full flex flex-row gap-2 mt-20">
         <button
           className={` ${
             furigana
@@ -102,7 +102,7 @@ export const BoardSettings = () => {
         >
           English
         </button>
-      </div>
+      </div> */}
     </>
   );
 };

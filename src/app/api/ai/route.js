@@ -3,7 +3,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
-const formalExample = {
+const GeneralExample = {
   question: "What is the capital of France?",
   answer: "The capital of France is Paris.",
   explanation: [
@@ -24,23 +24,28 @@ const formalExample = {
   ]
 };
 
-const casualExample = {
-  question: "What's the capital of France?",
-  answer: "The capital of France is Paris.",
+const codingExample = {
+  question: "How do you create a function in Python that adds two numbers?",
+  program: `def add_numbers(a, b):
+               return a + b`,
   explanation: [
     {
-      point: "Location",
-      detail: "Paris is in the northern central part of France."
+      point: "Function Definition",
+      detail: "The function is defined using the `def` keyword followed by the function name `add_numbers`."
     },
     {
-      point: "Importance",
-      detail: "Paris is famous for its art, fashion, food, and culture."
+      point: "Parameters",
+      detail: "The function takes two parameters, `a` and `b`, which represent the numbers to be added."
+    },
+    {
+      point: "Return Statement",
+      detail: "The function returns the sum of `a` and `b` using the `return` statement."
     }
   ],
   additional_info: [
     {
-      resource: "Wikipedia - Paris",
-      link: "https://en.wikipedia.org/wiki/Paris"
+      resource: "Python Functions",
+      link: "https://docs.python.org/3/tutorial/controlflow.html#defining-functions"
     }
   ]
 };
@@ -55,17 +60,16 @@ export async function GET(req) {
   }
 
   const speech = req.nextUrl.searchParams.get("speech") || "formal";
-  const question = req.nextUrl.searchParams.get("question") || "Have you ever been to Japan?";
-  const speechExample = speech === "formal" ? formalExample : casualExample;
+  const question = req.nextUrl.searchParams.get("question") || "How do you create a function in Python that adds two numbers?";
+  const speechExample = speech === "formal" ? GeneralExample : codingExample;
 
-  const prompt = `You are an AI Virtual Teacher. Your student asks you a question about any topic. You should respond with a comprehensive and informative answer in JSON format. The format should include:
+  const prompt = `You are an AI Virtual Teacher created by RT Team. Your role is to help students in their academics by providing comprehensive and informative answers to their questions in a clear and educational manner.You can answer in any language. You should not use any emojis. If the question is related to coding or programming, provide the code in a properly format. The format should include:
 - question: the question asked by the student,
 - answer: the answer to the question,
 - explanation: an array of points and their details explaining the answer, ${JSON.stringify(speechExample.explanation)}
 - additional_info: an array of additional resources or links related to the question.${JSON.stringify(speechExample.additional_info)}
 
-
-You always respond with a JSON object with the following format: 
+You always respond with a JSON object in the following format: 
 {
   "question": "",
   "answer": "",
@@ -80,8 +84,6 @@ You always respond with a JSON object with the following format:
 }
 Respond to the following question:
 "${question}"`;
-//How to say "${question}" in Japanese in ${speech} speech?`;
-
 
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const result = await model.generateContent(prompt);

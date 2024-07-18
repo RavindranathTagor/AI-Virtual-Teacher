@@ -2,8 +2,8 @@ import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { PassThrough } from "stream";
 
 export async function GET(req) {
-  // WARNING: Do not expose your keys
-  // WARNING: If you host publicly your project, add an authentication layer to limit the consumption of Azure resources
+ 
+  
 
   const speechConfig = sdk.SpeechConfig.fromSubscription(
     process.env["SPEECH_KEY"],
@@ -11,8 +11,7 @@ export async function GET(req) {
   );
 
   // https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=tts
-  //const teacher = req.nextUrl.searchParams.get("teacher") || "Nanami";
-  //speechConfig.speechSynthesisVoiceName = `ja-JP-${teacher}Neural`;
+
   const teacher = req.nextUrl.searchParams.get("teacher") || "Neerja";
   speechConfig.speechSynthesisVoiceName = `en-IN-${teacher}Neural`;
 
