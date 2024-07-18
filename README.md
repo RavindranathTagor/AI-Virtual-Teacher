@@ -39,6 +39,7 @@ To run the application in development mode, use the following command:
 
 ```bash
 yarn dev
+```
 
 
 This will start the Next.js development server, typically available at http://localhost:3000.
@@ -54,6 +55,7 @@ Create a new branch:
 ```bash
 git checkout -b feature/AmazingFeature
 ```
+
 Make your changes.
 
 Commit your changes:
