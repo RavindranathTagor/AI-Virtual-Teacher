@@ -1,5 +1,6 @@
 {
   "name": "r3f-ai-language-teacher",
+  "description": "A virtual AI language teacher application.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,7 +17,7 @@
     "leva": "^0.9.35",
     "marked": "^13.0.2",
     "microsoft-cognitiveservices-speech-sdk": "^1.38.0",
-    "next": "^14.2.4",
+    "next": "^14.2.5",
     "openai": "^4.52.3",
     "react": "^18",
     "react-dom": "^18",
